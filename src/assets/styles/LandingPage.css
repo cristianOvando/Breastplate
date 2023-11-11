@@ -1,103 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
 
-body{
-  background-color: rgb(230, 230, 230);
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:'American Typewriter (serif)';
 }
 
-.text-dialog-container {
-  display: flex;
-  justify-content: space-around;
-  text-align: justify;
-  font-weight: 800;
-  font-size: large;
-  margin: 16vh;
-  margin-top: 35vh;
-  margin-bottom: 35vh;
+/* Agrega esta regla para la animación de aparición gradual */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.title {
-  color: #701511;
-  font-size: xxx-large;
-  font-weight: 400;
-  align-items: center;
-  margin-right: 40vh;
-  margin-left: 10vh;
-  font-family: 'Black Ops One', sans-serif;
+.div-product, .div-img, .div-container-text, .div-specs-container, .redirectLogin {
+  animation: fadeIn 2s ease-in-out;
 }
 
 
-.subtitle{
-  font-size:larger;
-  align-items: center;
-  font-family: 'Didot (serif)';
-  font-weight: 500;
-  margin-top: 4vh;
-  margin-left: 10vh;
-  margin-right: 30vh;
-}
-
-.subtitle2{
-  color: #701511;
-  font-size:larger;
-  align-items: center;
-  font-family: 'Didot (serif)';
-  font-weight: 600;
-  margin-top: 4vh;
-  margin-left: 4vh;
-  margin-right: 15vh;
-}
-
-.img-p{
-  margin-top: -20vh;
-  margin-left: 5vh;
-  height: 30vh;
-}
-
-.img-p2{
-  margin-top: -10vh;
-  margin-left: 5vh;
-  height: 30vh;
-}
-
-.div-container-project {
-  margin: 15vh;
-  font-family: 'Didot (serif)';
-  margin-top: -5vh;
-}
-
-.project p{
-  color: #701611d3;
-  font-size:xx-large;  
-  margin-left: 9vh;
-  margin-bottom: 5vh;
-  font-family: 'Didot (serif)';
-}
-
-
-.name-project {
+.div-product{
+  margin: 30vh;
+  height: 100vh;
+  margin-top: 20vh;
   text-align: center;
-  font-size: larger;
-  font-weight: bold;
-  margin-bottom: 7vh;
+}
+
+.img-product{
+  margin-top: 2vh;
+  height: 40vh;
+}
+
+.div-information {
+  width: 40%;
+  margin: 0 auto; 
+  text-align: center; 
+}
+
+.ask {
+  font-size: x-large;
+  font-weight: bolder;
+  font-family: 'Didot', serif; 
+  margin-top: 6vh;
+}
+
+.answer {
+  text-align: center;
+  font-size: medium;
+  font-family: 'Didot', serif; 
+  margin-top: 5vh;
 }
 
 .div-img {
   display: flex;
   justify-content: space-around;
+  margin-top: 30vh;
 }
 
 .div-container-img,
 .div-container-img2 {
-  background-color: #7016119c;
-  width: 50vh;
-  height: 50vh;
+  background-color: #C4D1E6;
+  width: 40vh;
+  height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,170 +80,86 @@ body{
 }
 
 .div-img img {
-  width: 80%;
-  max-height: 80%;
+  width: 75%;
+  max-height: 75%;
 }
 
 .div-container-text {
-  font-family: 'Didot (serif)';
+  font-family: 'Didot', serif;
   font-size: larger;
-  font-weight: 500;
+  font-weight: bold;
   text-align: center;
   margin-top: 5vh;
 }
 
 
-.text-container{
-  justify-content: center;
-}
-
-.btn-conteiner {
+.div-specs-container {
   display: flex;
-  justify-content: center;
-  margin-top: -9vh;
-  --color-text: #ffffff;
-  --color-background:  #701511;
-  --color-outline: #ff145ab0;
-  --color-shadow: #00000080;
-}
-
-.btn-content {
-  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 1px 15vh;
-  font-weight: bold;
-  color: var(--color-text);
-  background: var(--color-background);
-  transition: 1s;
-  border-radius: 100px;
-  box-shadow: 0 0 0.2em 0 var(--color-background);
-}
-
-.btn-content:hover, .btn-content:focus {
-  transition: 0.5s;
-  -webkit-animation: btn-content 1s;
-  animation: btn-content 1s;
-  outline: 0.1em solid transparent;
-  outline-offset: 0.2em;
-  box-shadow: 0 0 0.4em 0 var(--color-background);
-}
-
-.btn-content .icon-arrow {
-  transition: 0.5s;
-  margin-right: 0px;
-  transform: scale(0.6);
-}
-
-.btn-content:hover .icon-arrow {
-  transition: 0.5s;
-  margin-right: 25px;
-}
-
-.icon-arrow {
-  width: 30px;
-  margin-left: 15px;
-  position: relative;
-  top: 6%;
-}
-  
-#arrow-icon-one {
-  transition: 0.4s;
-  transform: translateX(-60%);
-}
-
-#arrow-icon-two {
-  transition: 0.5s;
-  transform: translateX(-30%);
-}
-
-.btn-content:hover #arrow-icon-three {
-  animation: color_anim 1s infinite 0.2s;
-}
-
-.btn-content:hover #arrow-icon-one {
-  transform: translateX(0%);
-  animation: color_anim 1s infinite 0.6s;
-}
-
-.btn-content:hover #arrow-icon-two {
-  transform: translateX(0%);
-  animation: color_anim 1s infinite 0.4s;
-}
-
-/* SVG animations */
-@keyframes color_anim {
-  0% {
-    fill: white;
-  }
-
-  50% {
-    fill: var(--color-background);
-  }
-
-  100% {
-    fill: white;
-  }
-}
-
-/* Button animations */
-@-webkit-keyframes btn-content {
-  0% {
-    outline: 0.2em solid var(--color-background);
-    outline-offset: 0;
-  }
-}
-
-@keyframes btn-content {
-  0% {
-    outline: 0.2em solid var(--color-background);
-    outline-offset: 0;
-  }
-}
-
-.team {
-  margin-top: 30vh;
-  margin-bottom: -10vh;
-  font-family: 'Didot (serif)';
+  font-family: 'Didot', serif;
   text-align: center;
-  font-size: larger;
-  font-weight: 900;
+  margin-top: 25vh;
 }
 
-.div-info-team {
+.div-specs-container img {
+  height: 11vh;
+  width: 11vh;
+}
+
+.div-specs-container img:hover {
+  transform: scale(1.1);
+}
+
+.div-specs-container div {
+  width: 17%;  
+  text-align: center;
+  font-family: 'Didot', serif;
+}
+
+.redirectLogin{
   display: flex;
   justify-content: space-around;
-  height: 100px;
-  margin-top: 15vh;
-  margin-bottom: -5vh;
-  font-weight: 500;
-}
-
-.div-info-team img {
-  width: 30vh;
-  transition: transform 0.3s ease-in-out;
-}
-
-.div-info-team img:hover {
-  transform: translateY(-10px);
-}
-
-.name {
-  margin-top: 5vh;
-  font-weight: 600;
-  margin-bottom: 2vh;
-}
-
-.id-cristian {
-  justify-content: center;
+  height: 50vh;
+  margin-top: 30vh;
   text-align: center;
 }
 
-.id-diego {
-  justify-content: center;
-  text-align: center;
+.userlogin{
+  width: 40vh;
 }
 
-.id-martin {
+.div-login {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  text-align: center;
+  align-items: center;
+  margin-top: 4vh;
+  width: 40vh;
+  height: 30vh;
 }
+
+.btn-login-user{
+  border: transparent;
+  background:  #3A6BC1;
+  color: #F2F2F2;
+  font-family: 'Didot (serif)';
+  font-size: medium;
+  font-weight: bold;
+  cursor: pointer;  
+  border-radius: 4vh;
+  margin-top: 2vh;
+  width: 40vh;
+  height: 6vh;
+}
+
+
+.text-login {
+  font-size: x-large;
+  font-weight: bold;
+  font-family: 'Didot', serif;
+  margin-bottom: 3vh;
+}
+
+
