@@ -16,16 +16,44 @@
   }
 }
 
-.div-product, .div-img, .div-container-text, .div-specs-container, .redirectLogin {
+.radonm-data,.div-product, .div-img, .div-container-text, .div-specs-container, .redirectLogin {
   animation: fadeIn 2s ease-in-out;
+}
+
+.radonm-data{
+  display: flex;
+  justify-content: space-around;
+  margin: 20vh;
+  margin-top: 23vh;
+  margin-bottom: -15vh;
+}
+
+.text-information{
+  margin-top: 15vh;
+  width: 80vh;
+  font-size: larger;
+  text-align:justify;
+}
+
+.text-information-black{
+  width: 80vh;
+  font-size: larger;
+  text-align:justify;
+  font-weight: 900;
+  margin-top: 3vh;
+}
+
+.running{
+  height: 60vh;
 }
 
 
 .div-product{
+  display: flex;
+  justify-content: space-around;
   margin: 30vh;
-  height: 100vh;
-  margin-top: 20vh;
-  text-align: center;
+  height: 100%;
+  text-align:center;
 }
 
 .img-product{
@@ -43,41 +71,16 @@
   font-size: x-large;
   font-weight: bolder;
   font-family: 'Didot', serif; 
-  margin-top: 6vh;
+  margin-top: 10vh;
 }
 
 .answer {
   text-align: center;
-  font-size: medium;
+  font-size: larger;
   font-family: 'Didot', serif; 
   margin-top: 5vh;
 }
 
-.div-img {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 30vh;
-}
-
-.div-container-img,
-.div-container-img2 {
-  background-color: #C4D1E6;
-  width: 40vh;
-  height: 40vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.3s ease-in-out;
-}
-
-.div-container-img2{
-  margin-top: -4vh;
-}
-
-.div-container-img:hover,
-.div-container-img2:hover {
-  transform: scale(1.1); 
-}
 
 .div-img img {
   width: 75%;
@@ -86,21 +89,27 @@
 
 .div-container-text {
   font-family: 'Didot', serif;
-  font-size: larger;
+  font-size: x-large;
   font-weight: bold;
   text-align: center;
-  margin-top: 5vh;
 }
+
+.div-container-text p span.highlight {
+  background-color: #C4D1E6;
+}
+
 
 
 .div-specs-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content:space-around;
   align-items: center;
   font-family: 'Didot', serif;
   text-align: center;
-  margin-top: 25vh;
+  margin-left: 20vh;
+  margin-right: 20vh;
+  margin-top: 10vh;
 }
 
 .div-specs-container img {
@@ -113,7 +122,7 @@
 }
 
 .div-specs-container div {
-  width: 17%;  
+  width: 12%;  
   text-align: center;
   font-family: 'Didot', serif;
 }
@@ -123,6 +132,7 @@
   justify-content: space-around;
   height: 50vh;
   margin-top: 30vh;
+  margin-bottom: 15vh;
   text-align: center;
 }
 
@@ -150,8 +160,13 @@
   cursor: pointer;  
   border-radius: 4vh;
   margin-top: 2vh;
-  width: 40vh;
+  width: 38vh;
   height: 6vh;
+  transition: background-color 0.3s ease; 
+}
+
+.btn-login-user:hover {
+  background:  #1a1a1a; 
 }
 
 

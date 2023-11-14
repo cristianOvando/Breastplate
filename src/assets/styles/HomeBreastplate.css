@@ -1,0 +1,69 @@
+.grafic-dashboard {
+    height: 80vh;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    background-color: rgba(250, 250, 250, 0.863);
+    color: rgb(17, 17, 17);
+  }
+  
+  .grafic1 {
+    width: 100vh;
+    height: 100px;
+    background-color: rgb(5, 146, 68);
+  }
+  
+  .grafic2 {
+    width: 100px;
+    height: 100px;
+    background-color: brown;
+  }
+  
+  .dashboard {
+    width: 49vh;
+    height: 90vh;
+    margin: 0;
+    background-color: #dee2e7;
+    border-radius: 5vh;
+    flex-direction: column;
+  }
+  
+  .perfile {
+    margin: 4vh;
+    font-size: smaller;
+    font-weight: 900;
+    text-align: justify;
+  }
+  
+  .img-perfil {
+    text-align: center;
+    width: 19vh;
+  }
+  
+  .username {
+    margin-top: 2vh;
+    font-weight: bold;
+    font-size: large;
+  }
+  
+  .perfil-data {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: smaller;
+    font-family: 'Didot (serif)';
+    background-color: #F2F2F2;
+    height: 10vh;
+    margin-left: 5vh;
+    border-radius: 2vh;
+    margin-top: 4vh;
+    width: 80%;
+  }
+  
+  .text-data {
+    font-weight: bold;
+    font-size: small;
+    font-family: 'Didot (serif)';
+    margin: 1vh;
+  }
+  

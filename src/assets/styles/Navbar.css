@@ -27,12 +27,12 @@
     height: 10vh;
 }
 
-.btn-login{
+.btn-login {
     border: transparent;
-    background:  #3A6BC1;
+    background: #131313;
     color: #F2F2F2;
-    font-family: 'Didot (serif)';
-    font-size:small;
+    font-family: 'Didot', serif;
+    font-size: small;
     font-weight: bold;
     cursor: pointer;
     margin-right: 17vh;
@@ -40,4 +40,10 @@
     margin-top: 2vh;
     width: 26vh;
     height: 6vh;
+    transition: background-color 0.3s ease; 
   }
+  
+  .btn-login:hover {
+    background:  #3A6BC1; 
+  }
+  

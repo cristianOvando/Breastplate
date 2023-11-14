@@ -5,12 +5,12 @@ import exercise from "../../assets/images/Exercise.png";
 import pulse from "../../assets/images/Pulse.png";
 import temperature from "../../assets/images/Temperature.png"
 import calories from "../../assets/images/Calories.png";
-import img1 from "../../assets/images/img1.png";
-import img2 from "../../assets/images/img2.png";
-import img3 from "../../assets/images/img3.png";
+import Running from "../../assets/images/running.png";
 import Login from "../../assets/images/UserLogin.png";
 import "../../assets/styles/LandingPage.css";
 import Navbar from '../atoms/Navbar';
+import Footer from '../atoms/Footer';
+
 
 function projectBreastplate() {
 
@@ -24,6 +24,16 @@ function projectBreastplate() {
     <>
      <Navbar/>     
      <div>
+        <div className='radonm-data'> 
+          <div>
+            <p className='text-information'>Sabías que correr a un ritmo moderado durante 30 minutos puede quemar alrededor de 240 a 300 calorías, dependiendo de factores como el peso corporal y el metabolismo individual. </p>
+            <p className='text-information-black'>"Así que la próxima vez que salgas a correr, estarás haciendo un gran trabajo tanto para tu estado físico como para tu gasto calórico"</p>
+          </div>
+          
+            <div>
+              <img className='running' src={Running}/>
+            </div>
+        </div>
       <div className='div-product'>
           <div>
             <img  className="img-product" src={product} />
@@ -31,6 +41,10 @@ function projectBreastplate() {
           <div className='div-information'>
             <p className='ask'>¿QUE ES BREASTPLATE?</p>
             <p className='answer'>Es una herramienta de alta calidad con la capacidad de medir datos vitales en tiempo real que son controlados, distribuidos de manera que los datos puedan ser visualizados de manera facil para nuestros usuarios.</p>
+          </div>
+      </div>
+          <div className='div-container-text'>
+            <p><span class="highlight">BREASTPLATE</span> capaz de medir tu rendimiento físico</p>
           </div>
             <div className='div-specs-container'>
                 <div>
@@ -54,22 +68,6 @@ function projectBreastplate() {
                   <p>Calorías quemadas durante el uso</p>
                 </div>
             </div>
-            <div className='radonm-data'> 
-              <div>
-                  <p></p>
-              </div>
-              <div>
-                <img/>
-              </div>
-            </div>
-            <div className='div-img'>
-              <div className='div-container-img'><img src={img2} alt="img1" /></div>
-              <div className='div-container-img2'><img src={img1} alt="img2" /></div>
-              <div className='div-container-img'><img src={img3} alt="img3" /></div>
-          </div>
-          <div className='div-container-text'>
-              <p>¡Capaz de medir tu rendimiento físico!</p>
-            </div>
             <div className='redirectLogin'>
               <div>
                 <img className="userlogin" src={Login}/>
@@ -79,8 +77,8 @@ function projectBreastplate() {
                 <div><button className='btn-login-user' onClick={handleNavigation}>Iniciar sesión</button></div>
               </div>
             </div>
+          <Footer/>
       </div>
-     </div>
     </>
      );
 }
