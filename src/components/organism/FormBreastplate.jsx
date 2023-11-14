@@ -1,16 +1,17 @@
-import React, { useRef, useState, useContext } from 'react';
+import React, { useRef, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { activarContenedor, desactivarContenedor } from '../../animation/main.js';
 import TokenContext from '../../contexts/TokenContext.js';
 import showLoginContext from '../../contexts/showLoginContext.js';
 import NavbarLogin from '../atoms/NavbarLogin.jsx';
+import FrameworkContext from '../../contexts/FrameworkContext.js';
 import '../../assets/styles/FormBreastplate.css';
 
 function FormBreastPlate() { 
 
   const [showLogin, setShowLogin] = useState(showLoginContext);
-  const [framework, setFramework] = useState("male");
-  const {isToken, setIsToken, setUsername} = useContext(TokenContext);
+  const {framework, setFramework} = useContext(FrameworkContext);
+  const {token, setToken} = useContext(TokenContext);
   const navigate = useNavigate();
   const form = useRef();
 
@@ -27,7 +28,8 @@ function FormBreastPlate() {
     setShowLogin(!showLogin);
   };
 
-   const handlerClick = (e) =>{
+
+   const handlerClick = async (e) =>{
       e.preventDefault()
       if (showLogin){
           const formData = new FormData(form.current);
@@ -35,17 +37,27 @@ function FormBreastPlate() {
           const contrasena = formData.get("password");
 
           const url = `http://localhost:2003/login/${usuario}/${contrasena}`;
+          const requesOptions ={
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
 
-          fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("datos: ", data);
-            setUsername(usuario);
-            navigate("/Home");
-          })
-          .catch((error) => {
-            console.error("Error", error);
-          })
+          try {
+            const response = await fetch(url, requesOptions);
+            const data = await response.json();
+
+            if (response.ok){
+              console.log("datos: ", data.message);
+              setFramework(data.data);
+              navigate("/Home");
+            }else{
+              console.error("Error en la respuesta del servidor: ", data);
+            }
+          }catch(error){
+            console.error("Error al enviar la solicitud: ", error);
+          }
 
       }else{
         e.preventDefault()

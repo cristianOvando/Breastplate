@@ -1,12 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import NavbarHome from "../atoms/NavbarHome";
 import perfilMale from "../../assets/images/man.png";
 import TokenContext from "../../contexts/TokenContext";
+import perfilGirl from "../../assets/images/girl.png";
+import FrameworkContext from "../../contexts/FrameworkContext";
 import "../../assets/styles/HomeBreastplate.css";
 
 function Home() {
-  const tokenContext = useContext(TokenContext);
-  const { sex, username } = tokenContext;
+  const {token, setToken} = useContext(TokenContext);
+  const {framework, setFramework} = useContext(FrameworkContext);
+  let perfilImg;
+
+if (framework.sex === "male") {
+  perfilImg = perfilMale;
+  // console.log("Perfil masculino seleccionado");
+  // console.log(framework.sex);
+
+} else {
+  perfilImg = perfilGirl;
+  // console.log("Perfil femenino seleccionado");
+  // console.log(framework.sex);
+}
+
+
+  // useEffect(() =>{
+  //   console.log("este es el token:",token);
+  // }, [token])
 
   return (
     <>
@@ -20,9 +39,9 @@ function Home() {
               <p className="perfile">Perfil</p>
             </div>
             <div>
-              <img className="img-perfil"src={perfilMale}alt="Perfil"/>
+              <img className="img-perfil" src={perfilImg} alt="Perfil"/>
               <p className="username">
-                {username ? `${username}` : "Usuario no autenticado"}
+                {framework.username ? `${framework.username}` : "Usuario no autenticado"}
               </p>
             </div>
             <div className="perfil-data">
