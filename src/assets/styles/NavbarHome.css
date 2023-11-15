@@ -1,5 +1,12 @@
+.navbarLH{
+  display: flex;
+  justify-content:space-between;
+  height: 10vh;
+}
+
 .button {
     display: block;
+    justify-content: left;
     position: relative;
     width: 56px;
     height: 56px;
@@ -66,4 +73,9 @@
     transform: translateX(-56px);
   }
   
+.logo-login{
+  height: 9vh;
+  margin-top: 1vh;
+  margin-right: 5vh;
+}
   
