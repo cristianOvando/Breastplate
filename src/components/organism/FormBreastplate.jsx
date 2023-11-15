@@ -1,17 +1,18 @@
-import React, { useRef, useState, useContext, useEffect } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { activarContenedor, desactivarContenedor } from '../../animation/main.js';
+import AlertBox from '../atoms/Alert.jsx';
 import TokenContext from '../../contexts/TokenContext.js';
 import showLoginContext from '../../contexts/showLoginContext.js';
-import NavbarLogin from '../atoms/NavbarLogin.jsx';
+import NavbarHome from '../atoms/NavbarHome.jsx';
 import FrameworkContext from '../../contexts/FrameworkContext.js';
 import '../../assets/styles/FormBreastplate.css';
 
-function FormBreastPlate() { 
-
+function FormBreastPlate() {
   const [showLogin, setShowLogin] = useState(showLoginContext);
-  const {framework, setFramework} = useContext(FrameworkContext);
-  const {token, setToken} = useContext(TokenContext);
+  const [errorAlert, setErrorAlert] = useState(null);
+  const [successAlert, setSuccessAlert] = useState(null);
+  const { framework, setFramework } = useContext(FrameworkContext);
   const navigate = useNavigate();
   const form = useRef();
 
@@ -28,48 +29,51 @@ function FormBreastPlate() {
     setShowLogin(!showLogin);
   };
 
+  const handlerClick = async (e) => {
+    e.preventDefault();
+    setErrorAlert(null);
+    setSuccessAlert(null);
 
-   const handlerClick = async (e) =>{
-      e.preventDefault()
-      if (showLogin){
-          const formData = new FormData(form.current);
-          const usuario = formData.get("username");
-          const contrasena = formData.get("password");
+    if (showLogin) {
+      try {
+        const formData = new FormData(form.current);
+        const usuario = formData.get("username");
+        const contrasena = formData.get("password");
 
-          const url = `http://localhost:2003/login/${usuario}/${contrasena}`;
-          const requesOptions ={
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          };
+        const url = `http://localhost:2003/login/${usuario}/${contrasena}`;
+        const requestOptions = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
 
-          try {
-            const response = await fetch(url, requesOptions);
-            const data = await response.json();
+        const response = await fetch(url, requestOptions);
+        const data = await response.json();
 
-            if (response.ok){
-              console.log("datos: ", data.message);
-              setFramework(data.data);
-              navigate("/Home");
-            }else{
-              console.error("Error en la respuesta del servidor: ", data);
-            }
-          }catch(error){
-            console.error("Error al enviar la solicitud: ", error);
-          }
-
-      }else{
-        e.preventDefault()
-        const forms = new FormData(form.current)
+        if (response.ok) {
+          setSuccessAlert('¡Inicio de sesión exitoso!');
+          setFramework(data.data);
+          navigate("/Home");
+        } else {
+          setErrorAlert('¡Usuario o contraseña incorrectos!');
+          console.error("Error en la respuesta del servidor: ", data);
+        }
+      } catch (error) {
+        setErrorAlert('Error al iniciar sesión');
+        console.error("Error al enviar la solicitud: ", error);
+      }
+    } else {
+      try {
+        const forms = new FormData(form.current);
 
         let uri = "http://localhost:2003/users";
         let options = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            // Asumo que 'isToken' proviene de algún lugar, de lo contrario, ajusta esta parte.
             "Authorization": `Bearer ${isToken}`
-          
           },
           body: JSON.stringify({
             name: forms.get("name"),
@@ -82,29 +86,33 @@ function FormBreastPlate() {
             weight: forms.get("weight"),
             height: forms.get("height"),
           })
-      }
-      fetch(uri, options)
-      .then(response => response.json())
-      .then((data) => {
-        console.log(JSON.stringify(data));
-        if (showLogin) {
-          activarContenedor();
+        };
+
+        const response = await fetch(uri, options);
+        const data = await response.json();
+
+        if (response.ok) {
+          setSuccessAlert('Registro exitoso. ¡Bienvenido a breastplate!');
+          if (showLogin) {
+            activarContenedor();
+          } else {
+            desactivarContenedor();
+          }
+          setShowLogin(!showLogin);
         } else {
-          desactivarContenedor();
+          setErrorAlert('¡Verifica tus datos e inténtalo de nuevo!');
         }
-        setShowLogin(!showLogin);
-      })
-      .catch((error) =>{
+      } catch (error) {
+        setErrorAlert('¡Verifica tus datos e inténtalo de nuevo!');
         console.error("Error", error);
-      })
       }
     }
-  
+  };
 
   return (
-  <>
-  <NavbarLogin/>
-    <div className="container">
+    <>
+      <NavbarHome />
+      <div className="container">
       <div className="box">
         <div className={`form ${showLogin ? 'sign_in' : 'sign_up'}`}>
           <h3>{showLogin ? 'Inicio de sesión' : 'Registro'}</h3>
@@ -122,9 +130,6 @@ function FormBreastPlate() {
                 </div>
                 <div className="typeL">
                   <input type="password" placeholder="Contraseña" name="password" id="password" />
-                </div>
-                <div className="forgot">
-                  <span>¿Olvidaste tu contraseña?</span>
                 </div>
               </div>
               </>
@@ -179,14 +184,14 @@ function FormBreastPlate() {
       <div className="overlay">
         <div className={`page ${showLogin ? 'page_signIn' : 'page_signUp'}`}>
           {showLogin ? (
-            <h3>¡Bienvenido de nuevo!</h3>
+            <h3>¿No tienes cuenta?</h3>
           ) : (
             <h3>¡Listo para ser parte de breastplate!</h3>
           )}
           {showLogin ? (
             <p>Ingresa tus datos para poder iniciar sesión en breastplate</p>
           ) : (
-            <p>Ingresa tus datos para ser parte de breastplate</p>
+            <p>Inicia sesión para poder ingresar a breastplate</p>
           )}
 
           <button className="btn" onClick={toggleForm}>
@@ -199,8 +204,10 @@ function FormBreastPlate() {
           </button>
         </div>
       </div>
-    </div>
-  </>
+    </div>  
+      {errorAlert && <AlertBox type="error" message={errorAlert} onClose={() => setErrorAlert(null)} />}
+      {successAlert && <AlertBox type="success" message={successAlert} onClose={() => setSuccessAlert(null)} />}
+    </>
   );
 }
 

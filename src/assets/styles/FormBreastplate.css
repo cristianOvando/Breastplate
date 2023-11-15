@@ -4,15 +4,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Didot (serif);
+    font-family: 'Didot (serif)';
 }
-
 
 .container {
   width: 89vw; 
   height: 83vh;
   margin: 12vh;
-  margin-top: -1vh;
+  margin-top: 1vh;
   display: flex;
   justify-items: center;
   align-items: center; 
@@ -102,7 +101,7 @@
     width: 50%;
     transition: all 0.8s;
     transform: translateX(0);
-    background-color: #3A6BC1;
+    background-color: #688DCE;
     z-index: 1;
     overflow: hidden;
     z-index: 5;
@@ -226,6 +225,8 @@
 }
 
 .bkg {
-    margin-top: 4vh;
+    margin-top: 1vh;
+    height: 7vh;
+    font-size: small;
     background-color: #3A6BC1;
 }

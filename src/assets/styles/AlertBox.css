@@ -1,0 +1,38 @@
+/* AlertBox.css */
+.alert-box {
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 300px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #333;
+  }
+  
+  .alert-box.success {
+    background-color: #4caf50;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .alert-box.error {
+    background-color: #f44336;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: inherit;
+  }
+  
