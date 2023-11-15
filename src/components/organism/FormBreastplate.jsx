@@ -40,7 +40,7 @@ function FormBreastPlate() {
         const usuario = formData.get("username");
         const contrasena = formData.get("password");
 
-        const url = `http://localhost:2003/login/${usuario}/${contrasena}`;
+        const url = `http://34.232.224.98:2003/login/${usuario}/${contrasena}`;
         const requestOptions = {
           method: "GET",
           headers: {
@@ -67,7 +67,7 @@ function FormBreastPlate() {
       try {
         const forms = new FormData(form.current);
 
-        let uri = "http://localhost:2003/users";
+        let uri = "http://34.232.224.98:2003/users";
         let options = {
           method: "POST",
           headers: {
