@@ -72,7 +72,6 @@ function FormBreastPlate() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            // Asumo que 'isToken' proviene de algún lugar, de lo contrario, ajusta esta parte.
             "Authorization": `Bearer ${isToken}`
           },
           body: JSON.stringify({
