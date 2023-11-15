@@ -6,6 +6,7 @@ import TokenContext from '../../contexts/TokenContext.js';
 import showLoginContext from '../../contexts/showLoginContext.js';
 import NavbarHome from '../atoms/NavbarHome.jsx';
 import FrameworkContext from '../../contexts/FrameworkContext.js';
+import UserContext from '../../contexts/UserContext.js';
 import '../../assets/styles/FormBreastplate.css';
 
 function FormBreastPlate() {
@@ -13,6 +14,10 @@ function FormBreastPlate() {
   const [errorAlert, setErrorAlert] = useState(null);
   const [successAlert, setSuccessAlert] = useState(null);
   const { framework, setFramework } = useContext(FrameworkContext);
+  const {token, setToken} = useContext(TokenContext);
+  const {isUser, setUser} = useContext(UserContext);
+
+
   const navigate = useNavigate();
   const form = useRef();
 
@@ -53,6 +58,8 @@ function FormBreastPlate() {
 
         if (response.ok) {
           setSuccessAlert('¡Inicio de sesión exitoso!');
+          setUser(true);
+          console.log(data.message);
           setFramework(data.data);
           navigate("/Home");
         } else {
@@ -72,7 +79,7 @@ function FormBreastPlate() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${isToken}`
+            "Authorization": `Bearer ${token}`
           },
           body: JSON.stringify({
             name: forms.get("name"),

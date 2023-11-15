@@ -5,8 +5,9 @@ import "../../assets/styles/NavbarHome.css";
 function NavbarHome() {
 
     const navigate = useNavigate();
+
     const handleNavigation = () => {
-        navigate("/"); 
+        navigate("/");
     };
 
     return ( 
