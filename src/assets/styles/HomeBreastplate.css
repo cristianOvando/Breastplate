@@ -19,8 +19,9 @@
   
   .dashboard {
     width: 40vh;
-    height: 90vh;
-    margin: 0;
+    height: 89vh;
+    margin-top: 1vh;
+    padding: 0;
     background-color: #e3e6eb;
     border-radius: 5vh;
     flex-direction: column;
@@ -52,7 +53,7 @@
     font-family: 'Didot (serif)';
     background-color: #f2f2f2;
     height: 35vh;
-    margin-left: 5vh;
+    margin-left: 4vh;
     border-radius: 2vh;
     margin-top: 5vh;
     width: 80%;
