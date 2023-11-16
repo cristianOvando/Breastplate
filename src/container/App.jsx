@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import LandingPage from '../pages/LandingPage';
-import FormBreatplate from '../pages/FormPage';
+import FormBreastplate from '../pages/FormPage';
 import HomeBreastplate from '../pages/HomePage';
 import navbarContexts from "../contexts/navbarContexts";
 import TokenContext from "../contexts/TokenContext";
@@ -9,6 +9,7 @@ import showLoginContext from "../contexts/showLoginContext";
 import GenderContext from "../contexts/genderContext";
 import FrameworkContext from "../contexts/FrameworkContext";
 import UserContext from "../contexts/UserContext";
+import ProtectedParentRoute from "./ProtectedParentRoute";
 
 function App() {
   const [isNavbar, setIsNavbar] = useState(false);
@@ -29,8 +30,10 @@ function App() {
                 <UserContext.Provider value={{isUser, setUser}}>
                   <Routes>
                     <Route path="/" element={<LandingPage />} />
-                    <Route path="/FormBreastplate" element={<FormBreatplate />} />
+                    <Route path="/Login" element={<FormBreastplate />} />
+                    <Route element={<ProtectedParentRoute isUser={isUser}/>}>
                     <Route path="/Home" element={<HomeBreastplate />} />
+                    </Route>
                   </Routes> 
                 </UserContext.Provider>
               </FrameworkContext.Provider>

@@ -6,7 +6,6 @@ import pulse from "../../assets/images/Pulse.png";
 import temperature from "../../assets/images/Temperature.png"
 import calories from "../../assets/images/Calories.png";
 import Running from "../../assets/images/running.png";
-import gifSport from "../../assets/gif/gifSport.gif";
 import Login from "../../assets/images/UserLogin.png";
 import Navbar from '../atoms/Navbar';
 import Footer from '../atoms/Footer';
@@ -18,7 +17,7 @@ function projectBreastplate() {
   const navigate = useNavigate();
 
     const handleNavigation = () => {
-        navigate("/FormBreastplate"); 
+        navigate("/Login"); 
     };
  
   return (
@@ -32,7 +31,7 @@ function projectBreastplate() {
           </div>
           
             <div>
-              <img className='running' src={gifSport}/>
+              <img className='running' src={Running}/>
             </div>
         </div>
       <div className='div-product'>

@@ -1,9 +1,9 @@
-import FormLogin from "../components/organism/FormBreastplate";
+import Formbreastplate from "../components/organism/FormBreastplate";
 
 function Form() {
     return (
         <>
-        <FormLogin/>
+        <Formbreastplate/>
         </>
       );
 }

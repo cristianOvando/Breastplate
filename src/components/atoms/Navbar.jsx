@@ -11,7 +11,7 @@ function Navbar() {
     
 
     const handleNavigation = () => {
-        navigate("/FormBreastplate"); 
+        navigate("/Login"); 
     };
 
     const handlerClick = () =>{
@@ -20,7 +20,7 @@ function Navbar() {
 
     const handlerlogout = () => {
         setUser(false);
-        navigate("/FormBreastplate"); 
+        navigate("/Login"); 
     }
 
     return ( 
