@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
 
+/* .fondo{
+  background-color: #f2f2f2;
+} */
+
 * {
   margin: 0;
   padding: 0;
@@ -44,7 +48,7 @@
 }
 
 .running{
-  height: 60vh;
+  height: 50vh;
 }
 
 

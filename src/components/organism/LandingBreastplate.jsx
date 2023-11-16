@@ -6,10 +6,11 @@ import pulse from "../../assets/images/Pulse.png";
 import temperature from "../../assets/images/Temperature.png"
 import calories from "../../assets/images/Calories.png";
 import Running from "../../assets/images/running.png";
+import gifSport from "../../assets/gif/gifSport.gif";
 import Login from "../../assets/images/UserLogin.png";
-import "../../assets/styles/LandingPage.css";
 import Navbar from '../atoms/Navbar';
 import Footer from '../atoms/Footer';
+import "../../assets/styles/LandingPage.css";
 
 
 function projectBreastplate() {
@@ -23,7 +24,7 @@ function projectBreastplate() {
   return (
     <>
      <Navbar/>     
-     <div>
+     <div className='fondo'>
         <div className='radonm-data'> 
           <div>
             <p className='text-information'>Sabías que correr a un ritmo moderado durante 30 minutos puede quemar alrededor de 240 a 300 calorías, dependiendo de factores como el peso corporal y el metabolismo individual. </p>
@@ -31,7 +32,7 @@ function projectBreastplate() {
           </div>
           
             <div>
-              <img className='running' src={Running}/>
+              <img className='running' src={gifSport}/>
             </div>
         </div>
       <div className='div-product'>
