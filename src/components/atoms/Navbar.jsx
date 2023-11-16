@@ -18,6 +18,11 @@ function Navbar() {
         navigate("/Home");
     }
 
+    const handlerlogout = () => {
+        setUser(false);
+        navigate("/FormBreastplate"); 
+    }
+
     return ( 
         <>
         {isUser ? (<>
@@ -28,23 +33,24 @@ function Navbar() {
                     <div><p className='name-logo'>Breastplate</p></div>
                 </div>
                 <div>
-                <button className='btn-login' onClick={handleNavigation}>Iniciar sesión</button>
+                    <button className='btn-login' onClick={handlerClick}>Mis datos</button>
+                    <button className='btn-login' onClick={handlerlogout}>Cerrar sesión</button>
                 </div>
             </div>
         </div>
         </>) : (<>
-        </>)}
-        <div>
+            <div>
             <div className="div-container-navbar">
                 <div className="logo">
                     <div><img className='img-logo' src={Logo}/></div>
                     <div><p className='name-logo'>Breastplate</p></div>
                 </div>
                 <div>
-                    <button className='btn-login' onClick={handlerClick}>Mis datos</button>
+                <button className='btn-login' onClick={handleNavigation}>Iniciar sesión</button>
                 </div>
             </div>
         </div>
+        </>)}
         </>
      );
 }

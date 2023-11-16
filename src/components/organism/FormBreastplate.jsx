@@ -58,8 +58,8 @@ function FormBreastPlate() {
 
         if (response.ok) {
           setSuccessAlert('¡Inicio de sesión exitoso!');
-          setUser(true);
           console.log(data.message);
+          setUser(true);
           setFramework(data.data);
           navigate("/Home");
         } else {
