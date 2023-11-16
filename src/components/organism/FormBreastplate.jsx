@@ -67,7 +67,7 @@ function FormBreastPlate() {
           console.error("Error en la respuesta del servidor: ", data);
         }
       } catch (error) {
-        setErrorAlert('Error al iniciar sesión');
+        setErrorAlert('¡No se han podido mandar tus datos!');
         console.error("Error al enviar la solicitud: ", error);
       }
     } else {

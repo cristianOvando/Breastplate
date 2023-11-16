@@ -1,16 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
 
-/* .fondo{
-  background-color: #f2f2f2;
-} */
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Agrega esta regla para la animación de aparición gradual */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -28,29 +23,30 @@
   display: flex;
   justify-content: space-around;
   margin: 20vh;
+  width: 85%;
   margin-top: 23vh;
   margin-bottom: -15vh;
 }
 
 .text-information{
   margin-top: 15vh;
-  width: 80vh;
+  width: 85vh;
   font-size: larger;
   text-align:justify;
 }
 
 .text-information-black{
-  width: 80vh;
+  width: 85vh;
   font-size: larger;
-  text-align:justify;
+  text-align: center;
   font-weight: 900;
-  margin-top: 3vh;
+  margin-top: 5vh;
 }
 
 .running{
-  height: 50vh;
+  margin-top: 5vh;
+  height: 60vh;
 }
-
 
 .div-product{
   display: flex;
@@ -61,12 +57,12 @@
 }
 
 .img-product{
-  margin-top: 2vh;
+  margin-top: 5vh;
   height: 40vh;
 }
 
 .div-information {
-  width: 40%;
+  width: 80vh;
   margin: 0 auto; 
   text-align: center; 
 }
@@ -85,7 +81,6 @@
   margin-top: 5vh;
 }
 
-
 .div-img img {
   width: 75%;
   max-height: 75%;
@@ -102,8 +97,6 @@
   background-color: #C4D1E6;
 }
 
-
-
 .div-specs-container {
   display: flex;
   flex-wrap: wrap;
@@ -111,6 +104,7 @@
   align-items: center;
   font-family: 'Didot', serif;
   text-align: center;
+  width: 80%;
   margin-left: 20vh;
   margin-right: 20vh;
   margin-top: 10vh;
@@ -141,7 +135,7 @@
 }
 
 .userlogin{
-  width: 40vh;
+  width: 45vh;
 }
 
 .div-login {
@@ -149,8 +143,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 4vh;
-  width: 40vh;
+  margin-top: 6vh;
+  width: 20%;
   height: 30vh;
 }
 

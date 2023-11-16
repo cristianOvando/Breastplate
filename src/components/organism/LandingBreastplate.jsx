@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import product from "../../assets/images/Product.png"
+import { useNavigate } from 'react-router-dom';
+import product from "../../assets/images/Product.png";
 import exercise from "../../assets/images/Exercise.png";
 import pulse from "../../assets/images/Pulse.png";
-import temperature from "../../assets/images/Temperature.png"
+import temperature from "../../assets/images/Temperature.png";
 import calories from "../../assets/images/Calories.png";
 import Running from "../../assets/images/running.png";
 import Login from "../../assets/images/UserLogin.png";
@@ -13,21 +13,20 @@ import "../../assets/styles/LandingPage.css";
 
 
 function projectBreastplate() {
-
   const navigate = useNavigate();
 
-    const handleNavigation = () => {
-        navigate("/Login"); 
-    };
+  const handleNavigation = () => {
+    navigate("/Login");
+  };
  
   return (
     <>
      <Navbar/>     
-     <div className='fondo'>
+     <div>
         <div className='radonm-data'> 
           <div>
             <p className='text-information'>Sabías que correr a un ritmo moderado durante 30 minutos puede quemar alrededor de 240 a 300 calorías, dependiendo de factores como el peso corporal y el metabolismo individual. </p>
-            <p className='text-information-black'>"Así que la próxima vez que salgas a correr, estarás haciendo un gran trabajo tanto para tu estado físico como para tu gasto calórico"</p>
+            <p className='text-information-black'>"La próxima vez que salgas a correr, estarás haciendo un gran trabajo tanto para tu estado físico como para tu gasto calórico"</p>
           </div>
           
             <div>

@@ -33,8 +33,8 @@ function Navbar() {
                     <div><p className='name-logo'>Breastplate</p></div>
                 </div>
                 <div>
-                    <button className='btn-login' onClick={handlerClick}>Mis datos</button>
-                    <button className='btn-login' onClick={handlerlogout}>Cerrar sesión</button>
+                    <button className='btn-login-data' onClick={handlerClick}>Mis datos</button>
+                    <button className='btn-login-Signoff' onClick={handlerlogout}>Cerrar sesión</button>
                 </div>
             </div>
         </div>

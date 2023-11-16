@@ -13,7 +13,7 @@ function Footer() {
           <img src={logo} alt="Logo de la empresa" />
         </div>
         <div>
-          <p className="footer-text">© 2023 SkySoft</p>
+          <p className="footer-text">© 2023 Breastplate</p>
         </div>
         <div className="footer-social">
           <div>

@@ -24,7 +24,8 @@
 
 .img-logo{
     margin-left: 17vh;
-    height: 10vh;
+    margin-top: 1vh;
+    height: 9vh;
 }
 
 .btn-login {
@@ -37,7 +38,7 @@
     cursor: pointer;
     margin-right: 17vh;
     border-radius: 4vh;
-    margin-top: 2vh;
+    margin-top: 2.5vh;
     width: 26vh;
     height: 6vh;
     transition: background-color 0.3s ease; 
@@ -46,4 +47,44 @@
   .btn-login:hover {
     background:  #3A6BC1; 
   }
+
+.btn-login-data{
+    border: transparent;
+    background: #131313;
+    color: #f2f2f2;
+    font-family: 'Didot', serif;
+    font-size: small;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 15vh;
+    border-radius: 4vh;
+    margin-top: 2.5vh;
+    width: 26vh;
+    height: 6vh;
+    transition: background-color 0.3s ease; 
+  }
+
+.btn-login-data:hover{
+    background-color: #3A6BC1;
+}
+
+.btn-login-Signoff{
+    border: transparent;
+    background: #cf1a29;
+    color: #f2f2f2;
+    font-family: 'Didot', serif;
+    font-size: small;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 15vh;
+    border-radius: 4vh;
+    margin-top: 2.5vh;
+    width: 26vh;
+    height: 6vh;
+    transition: background-color 0.3s ease; 
+}
+
+.btn-login-Signoff:hover{
+    background-color: #881821;
+}
   
