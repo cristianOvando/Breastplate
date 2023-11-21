@@ -1,4 +1,4 @@
-/* AlertBox.css */
+
 .alert-box {
     position: fixed;
     top: 8px;
@@ -35,4 +35,10 @@
     font-size: 20px;
     color: inherit;
   }
-  
+
+  @media only screen and (max-width: 600px) {
+    .alert-box {
+        width: 60%;
+        height: 8vh;
+    }
+}

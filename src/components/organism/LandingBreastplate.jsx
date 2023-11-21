@@ -21,14 +21,14 @@ function projectBreastplate() {
  
   return (
     <>
-     <Navbar/>     
+     <Navbar/>   
+    <div>
      <div>
-        <div className='radonm-data'> 
-          <div>
+        <div className='random-data'> 
+          <div className='text-container-info'>
             <p className='text-information'>Sabías que correr a un ritmo moderado durante 30 minutos puede quemar alrededor de 240 a 300 calorías, dependiendo de factores como el peso corporal y el metabolismo individual. </p>
             <p className='text-information-black'>"La próxima vez que salgas a correr, estarás haciendo un gran trabajo tanto para tu estado físico como para tu gasto calórico"</p>
           </div>
-          
             <div>
               <img className='running' src={Running}/>
             </div>
@@ -72,12 +72,13 @@ function projectBreastplate() {
                 <img className="userlogin" src={Login}/>
               </div>
               <div className='div-login'>
-                <div><p className='text-login'>Que esperas para ser parte de breastplate</p></div>
+                <div><p className='text-login'>¡Que esperas para ser parte de breastplate!</p></div>
                 <div><button className='btn-login-user' onClick={handleNavigation}>Iniciar sesión</button></div>
               </div>
             </div>
           <Footer/>
       </div>
+    </div>  
     </>
      );
 }

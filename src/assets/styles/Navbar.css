@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
 
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
 .div-container-navbar{
     display: flex;
     justify-content:space-between;
@@ -68,23 +75,100 @@
     background-color: #3A6BC1;
 }
 
-.btn-login-Signoff{
-    border: transparent;
-    background: #cf1a29;
-    color: #f2f2f2;
-    font-family: 'Didot', serif;
-    font-size: small;
-    font-weight: bold;
-    cursor: pointer;
-    margin-right: 15vh;
-    border-radius: 4vh;
-    margin-top: 2.5vh;
-    width: 26vh;
-    height: 6vh;
-    transition: background-color 0.3s ease; 
-}
-
 .btn-login-Signoff:hover{
     background-color: #881821;
 }
-  
+
+.btn-login{
+  border: transparent;
+  color: #f2f2f2;
+  font-family: 'Didot', serif;
+  font-size: medium;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4vh;
+  margin-top: 2.5vh;
+  width: 26vh;
+  height: 6vh;
+  transition: background-color 0.3s ease;
+}
+
+.btn-login-data{
+  border: transparent;
+  color: #f2f2f2;
+  font-family: 'Didot', serif;
+  font-size: medium;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 6vh;
+  border-radius: 4vh;
+  margin-top: 2.5vh;
+  width: 27vh;
+  background-color: #131313;
+  height: 5vh;
+  transition: background-color 0.3s ease;
+}
+
+.btn-login-Signoff{
+    background-color: #d1303d;
+    border: transparent;
+    color: #f2f2f2;
+    font-family: 'Didot', serif;
+    font-size: medium;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4vh;
+    margin-top: 2.5vh;
+    margin-left: 6vh;
+    width: 27vh;
+    height: 5vh;
+    transition: background-color 0.3s ease;
+}
+
+.btns{
+  margin-right: 5vh;
+}
+
+.btn-login:hover {
+  background: #3A6BC1;
+}
+
+.btn-login-data:hover {
+  background-color: #3A6BC1;
+}
+
+.btn-login-Signoff:hover {
+  background-color: #881821;
+}
+
+@media only screen and (max-width: 768px) {
+  .div-container-navbar {
+    height: auto;
+    flex-direction:row;
+    align-items: center;
+    width: 100%;  
+    padding: 1vh;
+  }
+
+  .name-logo{
+    margin-top: 3vh;
+    font-size: medium;
+    margin-left: 5vh;
+  }
+
+  .img-logo {
+    margin-left: 0;
+    margin-top: 1vh;
+    height: 7vh;
+  }
+
+  .btn-login,
+  .btn-login-data,
+  .btn-login-Signoff {
+    width: 55%;
+    height: 4vh;
+    margin-left: 5vh;
+    font-size: small;
+    margin-top: 1vh;
+  }
+}

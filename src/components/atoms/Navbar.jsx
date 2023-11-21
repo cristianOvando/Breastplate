@@ -32,7 +32,7 @@ function Navbar() {
                     <div><img className='img-logo' src={Logo}/></div>
                     <div><p className='name-logo'>Breastplate</p></div>
                 </div>
-                <div>
+                <div className='btns'>
                     <button className='btn-login-data' onClick={handlerClick}>Mis datos</button>
                     <button className='btn-login-Signoff' onClick={handlerlogout}>Cerrar sesión</button>
                 </div>

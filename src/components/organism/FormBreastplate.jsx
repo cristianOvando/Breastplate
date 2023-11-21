@@ -45,7 +45,7 @@ function FormBreastPlate() {
         const usuario = formData.get("username");
         const contrasena = formData.get("password");
 
-        const url = `http://34.232.224.98:2003/login/${usuario}/${contrasena}`;
+        const url = `http://localhost:2003/login/${usuario}/${contrasena}`;
         const requestOptions = {
           method: "GET",
           headers: {
@@ -61,7 +61,7 @@ function FormBreastPlate() {
           console.log(data.message);
           setUser(true);
           setFramework(data.data);
-          navigate("/Home");
+          navigate("/Home");div-container-text
         } else {
           setErrorAlert('¡Usuario o contraseña incorrectos!');
           console.error("Error en la respuesta del servidor: ", data);
@@ -74,7 +74,7 @@ function FormBreastPlate() {
       try {
         const forms = new FormData(form.current);
 
-        let uri = "http://34.232.224.98:2003/users";
+        let uri = "http://localhost:2003/users";
         let options = {
           method: "POST",
           headers: {
@@ -167,11 +167,11 @@ function FormBreastPlate() {
                   <input type="password" name="password" placeholder="Contraseña" id="password" />
                 </div>
                 <div className='option'>
-                  <div>
+                  <div className='men'> 
                     <label htmlFor="">Hombre</label>
                     <input type="radio" name='sex' value="male" id='radio1' checked={framework == "male" ? true : false} onChange={cambioRadioFramework}/>
                   </div>
-                    <div>
+                    <div className='girl'>
                     <label htmlFor="">Mujer</label>
                     <input type="radio" name="sex" value="female" id="radio2" checked={framework == "female" ? true : false} onChange={cambioRadioFramework}/>
                     </div>
@@ -180,7 +180,7 @@ function FormBreastPlate() {
               </>
             )}
 
-            <button className="btn bkg" type="submit" onClick={handlerClick}>
+            <button className="btn-bkg" type="submit" onClick={handlerClick}>
               {showLogin ? 'Iniciar sesión' : 'Registrarme'}
             </button>
           </form>
@@ -190,14 +190,14 @@ function FormBreastPlate() {
       <div className="overlay">
         <div className={`page ${showLogin ? 'page_signIn' : 'page_signUp'}`}>
           {showLogin ? (
-            <h3>¿No tienes cuenta?</h3>
+            <h2>¿No tienes cuenta?</h2>
           ) : (
-            <h3>¡Listo para ser parte de breastplate!</h3>
+            <h2>¡Listo para ser parte de breastplate!</h2>
           )}
           {showLogin ? (
-            <p>Ingresa tus datos para poder iniciar sesión en breastplate</p>
+            <p className='size'>Ingresa tus datos para poder iniciar sesión en breastplate</p>
           ) : (
-            <p>Inicia sesión para poder ingresar a breastplate</p>
+            <p className='size'>Inicia sesión para poder ingresar a breastplate</p>
           )}
 
           <button className="btn" onClick={toggleForm}>

@@ -1,68 +1,145 @@
 .grafic-dashboard {
-    height: 80vh;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.863);
-    color: rgb(17, 17, 17);
+  height: 40vh;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.863);
+  color: rgb(17, 17, 17);
+}
+
+.div-grafic {
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  width: 100%;
+  height: 70vh;
+  color: black;
+}
+
+.card-data {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1vh;
+  height: 10vh;
+  border-radius: 5vh;
+}
+
+.card {
+  padding: 1rem;
+  background-color: #f2f2f2;
+  max-width: 30vh;
+  height: 14vh;
+  border-radius: 20px;
+  font-size: medium;
+  font-weight: 600;
+}
+
+.porcent-text{
+  margin-top: 5vh;
+  width: 20vh;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.porcent {
+  margin-top: 2vh;
+  margin-left: 0.5rem;
+  color: #688DCE;
+  font-weight: 600;
+  margin-top: 1vh;
+  text-align: center;
+}
+
+.card-data div {
+  margin-top: 10px; 
+}
+
+.c{
+  margin-left: -6vh;
+}
+
+
+.dashboard {
+  width: 40vh;
+  height: 88vh;
+  margin-top: 2vh;
+  font-size: large;
+  padding: 0;
+  background-color: #e3e6eb;
+  border-radius: 5vh;
+  flex-direction: column;
+}
+
+.perfile {
+  margin: 4vh;
+  font-size: smaller;
+  font-weight: 900;
+  text-align: justify;
+}
+
+.img-perfil {
+  text-align: center;
+  width: 19vh;
+}
+
+.username {
+  margin-top: 2vh;
+  font-weight: bold;
+  font-size: large;
+}
+
+.perfil-data {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: smaller;
+  font-family: 'Didot (serif)';
+  background-color: #f2f2f2;
+  height: 40vh;
+  margin-left: 4vh;
+  border-radius: 2vh;
+  margin-top: 5vh;
+  width: 80%;
+}
+
+.datasocket{
+  display: flex;
+  justify-content:space-around;
+}
+
+.text-data {
+  font-weight: bold;
+  font-size: small;
+  font-family: 'Didot (serif)';
+  margin: 1vh;
+}
+
+@media only screen and (max-width: 768px) {
+  .grafic-dashboard {
+      flex-direction: column;
+      height: auto;
   }
-  
+
   .div-grafic {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 90vh; 
-    color: black;
+      margin-top: 0;
+      width: 80%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: auto;
   }
-  
-  
+
   .dashboard {
-    width: 40vh;
-    height: 89vh;
-    margin-top: 1vh;
-    padding: 0;
-    background-color: #e3e6eb;
-    border-radius: 5vh;
-    flex-direction: column;
+      width: 100%;
+      height: 70vh;
+      margin-top: 10vh;
+      margin-bottom: 15vh;
+      height: auto;
   }
-  
-  .perfile {
-    margin: 4vh;
-    font-size: smaller;
-    font-weight: 900;
-    text-align: justify;
-  }
-  
-  .img-perfil {
-    text-align: center;
-    width: 19vh;
-  }
-  
-  .username {
-    margin-top: 2vh;
-    font-weight: bold;
-    font-size: large;
-  }
-  
+
   .perfil-data {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    font-size: smaller;
-    font-family: 'Didot (serif)';
-    background-color: #f2f2f2;
-    height: 35vh;
-    margin-left: 4vh;
-    border-radius: 2vh;
-    margin-top: 5vh;
-    width: 80%;
+      width: 100%;
+      height: 10vh;
+      margin-left: 0;
   }
-  
-  .text-data {
-    font-weight: bold;
-    font-size: small;
-    font-family: 'Didot (serif)';
-    margin: 1vh;
-  }
-  
+}
