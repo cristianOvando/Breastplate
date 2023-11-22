@@ -1,11 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
-import io from 'socket.io-client';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { format } from 'date-fns';
 import NavbarHome from "../atoms/NavbarHome";
 import perfilMale from "../../assets/images/man.png";
-import Datasocket from "../atoms/Datasocket";
-import TokenContext from "../../contexts/TokenContext";
 import perfilGirl from "../../assets/images/girl.png";
 import FrameworkContext from "../../contexts/FrameworkContext";
 import "../../assets/styles/HomeBreastplate.css";
@@ -16,22 +13,66 @@ function Home() {
   const [ritmoCardiacoData, setRitmoCardiacoData] = useState([]);
   let perfilImg;
 
+  const [calories, setCalories] = useState(0);
+  const [currentTemperature, setCurrentTemperature] = useState(0);
+  const [oxygenation, setOxygenation] = useState(0);
+  const [speed, setSpeed] = useState(0);
+  const [temperatureState, setTemperature] = useState(null);
+  const [lastTemperature, setLastTemperature] = useState(null);
+  const [socket, setSocket] = useState(null);
+  
+
   if (framework.sex === "male") {
     perfilImg = perfilMale;
   } else {
     perfilImg = perfilGirl;
   }
 
-  const [calories, setCalories] = useState(0);
-  const [currentTemperature, setCurrentTemperature] = useState(0);
-  const [averageTemperature, setAverageTemperature] = useState(0);
+  useEffect(() => {
+    let heartRate = 73;
+  
+    const intervalId = setInterval(() => {
+      const randomIncrement = Math.floor(Math.random() * 9) + 2; 
+  
+      heartRate += randomIncrement;
+  
+      if (heartRate >= 160) {
+        heartRate = 160;
+      }
+  
+      setRitmoCardiacoData((prevData) => [
+        ...prevData,
+        { name: format(Date.now(), 'HH:mm:ss'), ritmoCardiaco: heartRate },
+      ]);
+    }, 20000);
+  
+    return () => clearInterval(intervalId);
+  }, []);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const randomOxygenation = Math.floor(Math.random() * 11) + 90;
+      setOxygenation(randomOxygenation);
+    }, 20000); 
+  
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCalories((prevCalories) => prevCalories + 0.5);
+    }, 20000); 
+  
+    return () => clearInterval(intervalId);
+  }, []);
+  
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       const time = Date.now();
-      const temperatura = 36.5 + Math.random();
-      const newCalories = calories + 0.5;
+      
+      const temperatura = 36.9 + Math.random() * 1;
+      const newCalories = calories + 0.7;
 
       setCurrentTemperature(temperatura);
       setCalories(newCalories);
@@ -40,39 +81,23 @@ function Home() {
         ...prevData,
         { name: format(time, 'HH:mm:ss'), temperatura },
       ]);
+
+      setLastTemperature(temperatura);
     }, 15000);
 
     return () => clearInterval(intervalId);
   }, [calories]);
+  
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const time = Date.now();
-      const ritmoCardiaco = 70 + ((time / 60000) % 1) * 80;
-
-      setRitmoCardiacoData((prevData) => [
-        ...prevData,
-        { name: format(time, 'HH:mm:ss'), ritmoCardiaco },
-      ]);
-    }, 60000);
-
+      const randomSpeed = Math.floor(Math.random() * 11) + 3;
+      setSpeed(randomSpeed);
+    }, 20000);
+  
     return () => clearInterval(intervalId);
   }, []);
-
-  // useEffect para calcular el promedio de temperatura cada 5 minutos
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (temperaturaData.length > 0) {
-        const lastFiveMinutesData = temperaturaData.slice(-20); // Tomar los últimos 20 puntos (cada punto cada 15 segundos durante 5 minutos)
-        const sum = lastFiveMinutesData.reduce((total, data) => total + data.temperatura, 0);
-        const average = sum / lastFiveMinutesData.length;
-        setAverageTemperature(average);
-      }
-    }, 300000); // 300000 milisegundos = 5 minutos
-
-    return () => clearInterval(intervalId);
-  }, [temperaturaData]);
-
+  
   return (
     <>
       <NavbarHome />
@@ -81,15 +106,15 @@ function Home() {
           <div>
             <div className="div-grafic">
               <div>
-              <BarChart width={560} height={350} data={temperaturaData}>
+              <BarChart className="BarChart" width={540} height={350} data={temperaturaData}>
                   <XAxis
                     dataKey="name"
                     label={{ value: 'tiempo (s)', position: 'insideBottom', dy: 8, fontWeight: 'bold' }}
-                    tick={{ fontSize: 11 }}
+                    tick={{ fontSize: 10 }}
                   />
                   <YAxis
                     label={{ value: 'Temperatura (°C)', position: 'insideLeft', angle: -90, dy: 50, dx: 7, fontWeight: 'bold' }}
-                    tick={{ fontSize: 11 }}
+                    tick={{ fontSize: 10 }}
                     domain={[35, 40]}
                     ticks={[35, 35.5, 36, 36.5, 37, 37.5, 38, 38.5, 39, 39.5, 40]}
                   />
@@ -99,10 +124,10 @@ function Home() {
                 </BarChart>
               </div>
               <div>
-              <LineChart width={560} height={350} data={ritmoCardiacoData}>
+              <LineChart width={540} height={340} data={ritmoCardiacoData}>
                   <XAxis
                     dataKey="name"
-                    label={{ value: 'tiempo (min)', position: 'insideBottom', dy: 8, fontWeight: 'bold' }}
+                    label={{ value: 'tiempo (s)', position: 'insideBottom', dy: 8, fontWeight: 'bold' }}
                     tick={{ fontSize: 11 }}
                   />
                   <YAxis
@@ -118,18 +143,18 @@ function Home() {
               </div>
             </div>
             <div className="card-data">
-              <p className="porcent-text">Porcentaje de los últimos 30 minutos</p>
+              <p className="porcent-text">Promedio de los datos en los últimos 10 minutos</p>
               <div className="card">
-                <p>Temperatura </p>
-                <p className="porcent">{`${averageTemperature.toFixed(1)}°C`}</p>
+                <p className="title">Temperatura </p>
+                <p className="porcent">37.5 °C</p>
               </div>
               <div className="card">
-                <p>Ritmo Cardiaco</p>
-                <p className="porcent"></p>
+                <p className="title">Ritmo Cardiaco</p>
+                <p className="porcent">90 BPM</p>
               </div>
               <div className="card">
-                <p>Calorías</p>
-                <p className="porcent">{`${calories.toFixed(1)} kcal`}</p>
+                <p className="title">Calorías</p>
+                <p className="porcent">25 kcal</p>
               </div>
             </div>
           </div>
@@ -139,32 +164,32 @@ function Home() {
               </div>
               <div>
                 <img className="img-perfil" src={perfilImg} alt="Perfil" />
-                <p className="username">
-                  {framework.username ? `${framework.username}` : "Usuario no autenticado"}
-                </p>
+                  <p className="username">
+                    {framework.username ? `${framework.username}` : "Usuario no autenticado"}
+                  </p>
               </div>
               <div className="perfil-data">
                 <div>
                   <p className="text-data">Calorias</p>
-                  <p>{calories.toFixed(1)} kcal</p>
+                  <p className="porcent">{calories.toFixed(1)} kcal</p>
                 </div>
                 <div>
                   <p className="text-data">Ritmo cardiaco</p>
-                  <p>{`${ritmoCardiacoData.length > 0 ? ritmoCardiacoData[ritmoCardiacoData.length - 1].ritmoCardiaco.toFixed(0) : ''} BPM`}</p> 
+                  <p className="porcent">{`${ritmoCardiacoData.length > 0 ? ritmoCardiacoData[ritmoCardiacoData.length - 1].ritmoCardiaco.toFixed(0) : ''} BPM`}</p> 
                 </div>
                 <div>
                   <p className="text-data">Velocidad</p>
-                  <p>10 km/h</p>
+                  <p className="porcent">{`${speed.toFixed(1)}`} km/h</p>
                 </div>
                 <div>
                   <p className="text-data">Temperatura</p>
-                  <div className="datasocket">
-                    <div><Datasocket/></div><div className="c">°C</div>
-                  </div> 
+                    <div>
+                    <p className="porcent">{lastTemperature ? `${lastTemperature.toFixed(1)}` : ''} °C</p>
+                    </div>
                 </div>
                 <div>
                   <p className="text-data">Oxigenación en sangre</p>
-                  <p>95 SP02</p>
+                  <p className="porcent">{`${oxygenation}%`} SP02</p>
                 </div>
             </div>
             </div>

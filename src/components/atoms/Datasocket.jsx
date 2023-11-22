@@ -12,7 +12,7 @@ function Datasocket() {
           console.log('Datos recibidos desde el socket:', data);
           console.log(data);
 
-          setTemperature(data);
+          setTemperature(data); 
       });
 
       setSocket(newSocket);
