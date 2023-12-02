@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { format } from 'date-fns';
+import io from 'socket.io-client';
 import NavbarHome from "../atoms/NavbarHome";
 import perfilMale from "../../assets/images/man.png";
 import perfilGirl from "../../assets/images/girl.png";
@@ -28,75 +29,56 @@ function Home() {
     perfilImg = perfilGirl;
   }
 
+
   useEffect(() => {
-    let heartRate = 73;
+    const newSocket = io('http://192.168.0.26:3000');
   
-    const intervalId = setInterval(() => {
-      const randomIncrement = Math.floor(Math.random() * 9) + 2; 
+    newSocket.on("nuevos-datos", (data) => {
+      console.log("Datos recibidos:", data);
   
-      heartRate += randomIncrement;
+      const currentTime = new Date();
   
-      if (heartRate >= 160) {
-        heartRate = 160;
+      if (!isNaN(currentTime.getTime())) {
+
+        const temperaturaDataItem = {
+          name: format(currentTime, 'HH:mm:ss'),
+          temperatura: data.temperature,
+        };
+  
+        setTemperaturaData((prevData) => [
+          ...prevData,
+          temperaturaDataItem,
+        ]);
+  
+        setTemperature(data);
+  
+        const heartRateDataItem = {
+          name: format(currentTime, 'HH:mm:ss'),
+          ritmoCardiaco: data.heartRate,
+        };
+  
+        setRitmoCardiacoData((prevData) => [
+          ...prevData,
+          heartRateDataItem,
+        ]);
+
+        setSpeed(data.speed);
+  
+        setCalories((prevCalories) => prevCalories + data.calories);
+  
+        setOxygenation(data.oxygenation);
+      } else {
+        console.error("currentTime is not a valid Date object");
       }
+    });
   
-      setRitmoCardiacoData((prevData) => [
-        ...prevData,
-        { name: format(Date.now(), 'HH:mm:ss'), ritmoCardiaco: heartRate },
-      ]);
-    }, 20000);
+    setSocket(newSocket);
   
-    return () => clearInterval(intervalId);
-  }, []);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      const randomOxygenation = Math.floor(Math.random() * 11) + 90;
-      setOxygenation(randomOxygenation);
-    }, 20000); 
-  
-    return () => clearInterval(intervalId);
-  }, []);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCalories((prevCalories) => prevCalories + 0.5);
-    }, 20000); 
-  
-    return () => clearInterval(intervalId);
+    return () => {
+      newSocket.disconnect();
+    };
   }, []);
   
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      const time = Date.now();
-      
-      const temperatura = 36.9 + Math.random() * 1;
-      const newCalories = calories + 0.7;
-
-      setCurrentTemperature(temperatura);
-      setCalories(newCalories);
-
-      setTemperaturaData((prevData) => [
-        ...prevData,
-        { name: format(time, 'HH:mm:ss'), temperatura },
-      ]);
-
-      setLastTemperature(temperatura);
-    }, 15000);
-
-    return () => clearInterval(intervalId);
-  }, [calories]);
-  
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      const randomSpeed = Math.floor(Math.random() * 11) + 3;
-      setSpeed(randomSpeed);
-    }, 20000);
-  
-    return () => clearInterval(intervalId);
-  }, []);
   
   return (
     <>
@@ -146,55 +128,55 @@ function Home() {
               <p className="porcent-text">Promedio de los datos en los últimos 10 minutos</p>
               <div className="card">
                 <p className="title">Temperatura </p>
-                <p className="porcent">37.5 °C</p>
+                <p className="porcent">{currentTemperature.toFixed(1)} °C</p>
               </div>
               <div className="card">
                 <p className="title">Ritmo Cardiaco</p>
-                <p className="porcent">90 BPM</p>
+                <p className="porcent">{`${ritmoCardiacoData.length > 0 ? ritmoCardiacoData[ritmoCardiacoData.length - 1].ritmoCardiaco.toFixed(0) : ''} BPM`}</p>
               </div>
               <div className="card">
                 <p className="title">Calorías</p>
-                <p className="porcent">25 kcal</p>
+                <p className="porcent">{calories.toFixed(1)} kcal</p>
               </div>
             </div>
           </div>
-            <div className="dashboard">
-              <div>
-                <p className="perfile">Perfil</p>
-              </div>
-              <div>
-                <img className="img-perfil" src={perfilImg} alt="Perfil" />
-                  <p className="username">
-                    {framework.username ? `${framework.username}` : "Usuario no autenticado"}
-                  </p>
-              </div>
-              <div className="perfil-data">
-                <div>
-                  <p className="text-data">Calorias</p>
-                  <p className="porcent">{calories.toFixed(1)} kcal</p>
-                </div>
-                <div>
-                  <p className="text-data">Ritmo cardiaco</p>
-                  <p className="porcent">{`${ritmoCardiacoData.length > 0 ? ritmoCardiacoData[ritmoCardiacoData.length - 1].ritmoCardiaco.toFixed(0) : ''} BPM`}</p> 
-                </div>
-                <div>
-                  <p className="text-data">Velocidad</p>
-                  <p className="porcent">{`${speed.toFixed(1)}`} km/h</p>
-                </div>
-                <div>
-                  <p className="text-data">Temperatura</p>
-                    <div>
-                    <p className="porcent">{lastTemperature ? `${lastTemperature.toFixed(1)}` : ''} °C</p>
-                    </div>
-                </div>
-                <div>
-                  <p className="text-data">Oxigenación en sangre</p>
-                  <p className="porcent">{`${oxygenation}%`} SP02</p>
-                </div>
+          <div className="dashboard">
+            <div>
+              <p className="perfile">Perfil</p>
             </div>
+            <div>
+              <img className="img-perfil" src={perfilImg} alt="Perfil" />
+              <p className="username">
+                {framework.username ? `${framework.username}` : "Usuario no autenticado"}
+              </p>
+            </div>
+            <div className="perfil-data">
+              <div>
+                <p className="text-data">Calorias</p>
+                <p className="porcent">{calories.toFixed(1)} kcal</p>
+              </div>
+              <div>
+                <p className="text-data">Ritmo cardiaco</p>
+                <p className="porcent">{`${ritmoCardiacoData.length > 0 ? ritmoCardiacoData[ritmoCardiacoData.length - 1].ritmoCardiaco.toFixed(0) : ''} BPM`}</p>
+              </div>
+              <div>
+                <p className="text-data">Velocidad</p>
+                <p className="porcent">{speed} km/h</p>
+              </div>
+              <div>
+                <p className="text-data">Temperatura</p>
+                <div>
+                  <p className="porcent">{lastTemperature ? `${lastTemperature.toFixed(1)}` : ''} °C</p>
+                </div>
+              </div>
+              <div>
+                <p className="text-data">Oxigenación en sangre</p>
+                <p className="porcent">{`${oxygenation}%`} SP02</p>
+              </div>
             </div>
           </div>
         </div>
+      </div>
     </>
   );
 }
